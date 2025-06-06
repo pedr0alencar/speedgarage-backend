@@ -6,3 +6,4 @@ router.register(r'cars',    CarroViewSet,   basename='carro')
 router.register(r'reviews', CriticaViewSet, basename='critica')
 
 urlpatterns = router.urls
+
