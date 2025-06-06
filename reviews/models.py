@@ -15,14 +15,26 @@ class Carro(models.Model):
 
 
 class Critica(models.Model):
-    usuario   = models.ForeignKey(User,  on_delete=models.CASCADE, related_name="criticas")
-    carro     = models.ForeignKey(Carro, on_delete=models.CASCADE, related_name="criticas")
-    avaliacao = models.IntegerField()
-    texto     = models.TextField(max_length=2_000)
-    criado_em = models.DateTimeField(auto_now_add=True)      # ← voltou
+    usuario   = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="criticas",
+        verbose_name="Usuário"
+    )
+    carro     = models.ForeignKey(
+        Carro,
+        on_delete=models.CASCADE,
+        related_name="criticas",
+        verbose_name="Carro"
+    )
+    avaliacao = models.IntegerField("Avaliação (1 a 5)")
+    texto     = models.TextField("Texto da crítica", max_length=2000)
+    criado_em = models.DateTimeField("Data de criação", auto_now_add=True)
 
     class Meta:
         ordering = ["-criado_em"]
+        verbose_name = "Crítica"
+        verbose_name_plural = "Críticas"
 
     def __str__(self):
-        return f"{self.carro} – {self.avaliacao}★ by {self.usuario.username}"
+        return f"{self.carro} – {self.avaliacao}★ por {self.usuario.username}"

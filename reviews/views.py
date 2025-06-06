@@ -7,7 +7,7 @@ from .serializers import CarroSerializer, CriticaSerializer
 class CarroViewSet(viewsets.ModelViewSet):
     queryset = Carro.objects.all()
     serializer_class = CarroSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]   # ← exige token para qualquer método
     filter_backends = [filters.SearchFilter]
     search_fields = ["marca", "modelo", "ano"]
 
