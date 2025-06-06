@@ -1,16 +1,18 @@
 """
-Django settings for speedgarage project.
+Django settings para speedgarage.
+
 Gerado pelo 'django-admin startproject'.
 
 ATENÇÃO
 -------------------------------------------
 • Nunca exponha SECRET_KEY nem DEBUG=True em produção.
-• Mantenha variáveis sensíveis no .env (ex.: DJANGO_SECRET_KEY, DATABASE_URL).
+• Mantenha variáveis sensíveis em variáveis de ambiente (ex.: DJANGO_SECRET_KEY, DATABASE_URL).
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
 from datetime import timedelta
+import dj_database_url
 
 # ------------------------------------------------------------------
 # Caminhos
@@ -20,21 +22,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ------------------------------------------------------------------
 # Variáveis de ambiente básicas
 # ------------------------------------------------------------------
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'unsafe-dev-key')
+SECRET_KEY = os.getenv(
+    'DJANGO_SECRET_KEY',
+    'unsafe-dev-key'
+)
+
 DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    # domínio Railway/Vercel em produção, ex.:
-    # 'speedgarage-production.up.railway.app',
-]
+# Em produção, defina DJANGO_ALLOWED_HOSTS="dominio1.com,dominio2.com"
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # ------------------------------------------------------------------
-# Aplicações
+# Aplicações instaladas
 # ------------------------------------------------------------------
 INSTALLED_APPS = [
-    # Django core
+    # Core do Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt',
-    # apps
+
+    # Apps do projeto
     'reviews',
 ]
 
@@ -55,7 +58,8 @@ INSTALLED_APPS = [
 # ------------------------------------------------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',          #  ← precisa vir antes do CommonMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',       # ← Serve arquivos estáticos em produção
+    'corsheaders.middleware.CorsMiddleware',            # ← Deve vir antes de CommonMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -90,19 +94,18 @@ TEMPLATES = [
 ]
 
 # ------------------------------------------------------------------
-# Banco de dados (SQLite DEV → PostgreSQL PROD via DATABASE_URL)
+# Banco de dados (SQLite para DEV → PostgreSQL via DATABASE_URL em PROD)
 # ------------------------------------------------------------------
-import dj_database_url
-
 DATABASES = {
     'default': dj_database_url.config(
         default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
         conn_max_age=600,
+        ssl_require=False
     )
 }
 
 # ------------------------------------------------------------------
-# Usuario customizado (se usar o modelo Usuario em reviews)
+# Modelo de usuário customizado (se for usar)
 # ------------------------------------------------------------------
 # AUTH_USER_MODEL = 'reviews.Usuario'
 
@@ -127,7 +130,9 @@ USE_TZ = True
 # ------------------------------------------------------------------
 # Arquivos estáticos
 # ------------------------------------------------------------------
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+# WhiteNoise já está configurado no MIDDLEWARE para servir estes arquivos
 
 # ------------------------------------------------------------------
 # REST Framework + JWT
@@ -150,7 +155,8 @@ SIMPLE_JWT = {
 # CORS
 # ------------------------------------------------------------------
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:4200',      # Angular dev
+    'http://localhost:4200',      # Angular em dev
+    # Em produção, adicione o domínio do front (por ex.: 'https://meu-frontend.vercel.app')
 ]
 
 # ------------------------------------------------------------------
