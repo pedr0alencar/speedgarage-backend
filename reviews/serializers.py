@@ -52,15 +52,32 @@ class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
     
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
-        # Aceita username ou email
+        # Pega o campo que o usuário enviou como 'username' no Angular
         username_or_email = attrs.get('username')
         password = attrs.get('password')
 
+        # Sua lógica para permitir login com email (que está ótima)
         if '@' in username_or_email:
             try:
-                user = User.objects.get(email=username_or_email)
-                attrs['username'] = user.username  # Substitui pelo username real
+                # Encontra o usuário pelo email
+                user = User.objects.get(email__iexact=username_or_email) 
+                # Substitui o email pelo username correspondente para a autenticação padrão
+                attrs['username'] = user.username
             except User.DoesNotExist:
+                # Se não encontrar, a validação padrão abaixo irá falhar, o que é o esperado
                 pass
-                
-        return super().validate(attrs)
+        
+        # 1. Chama o método original para obter os tokens
+        # Ele autentica o usuário e retorna {'access': '...', 'refresh': '...'}
+        data = super().validate(attrs)
+        
+        # 2. Adiciona os dados do usuário à resposta
+        # Após a validação, `self.user` contém o objeto do usuário logado
+        data['user'] = {
+            'id': self.user.id,
+            'username': self.user.username,
+            'email': self.user.email
+        }
+        
+        # 3. Retorna o dicionário completo: tokens + dados do usuário
+        return data
