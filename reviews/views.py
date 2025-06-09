@@ -2,6 +2,15 @@ from rest_framework import viewsets, permissions, filters
 from rest_framework.exceptions import PermissionDenied
 from .models import Carro, Critica
 from .serializers import CarroSerializer, CriticaSerializer
+from rest_framework.serializers import ModelSerializer
+from rest_framework import generics
+from django.contrib.auth.models import User
+from rest_framework.permissions import AllowAny
+from .serializers import RegisterSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import EmailTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
 
 
 class CarroViewSet(viewsets.ModelViewSet):
@@ -29,3 +38,17 @@ class CriticaViewSet(viewsets.ModelViewSet):
         if self.request.user != instance.usuario:
             raise PermissionDenied("Apenas o autor pode excluir.")
         instance.delete()
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = [AllowAny]
+    serializer_class = RegisterSerializer
+    
+    
+class EmailTokenObtainPairView(TokenObtainPairView):
+    serializer_class = EmailTokenObtainPairSerializer
+    
+    
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer

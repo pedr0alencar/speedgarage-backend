@@ -1,9 +1,14 @@
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CarroViewSet, CriticaViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from .views import CarroViewSet, CriticaViewSet, RegisterView
 
 router = DefaultRouter()
-router.register(r'cars',    CarroViewSet,   basename='carro')
+router.register(r'cars', CarroViewSet, basename='carro')
 router.register(r'reviews', CriticaViewSet, basename='critica')
 
-urlpatterns = router.urls
-
+urlpatterns = [
+    path('', include(router.urls)),  # Rotas: /cars/ e /reviews/
+    path('register/', RegisterView.as_view(), name='register'),  # ← Agora a URL correta é /api/register/
+    # Remova as rotas JWT daqui (elas devem ficar só no urls.py principal)
+]

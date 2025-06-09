@@ -1,5 +1,10 @@
 from rest_framework import serializers
 from .models import Carro, Critica
+from django.contrib.auth.models import User
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.contrib.auth import authenticate
+from rest_framework import serializers
 
 class CarroSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,3 +33,34 @@ class CriticaSerializer(serializers.ModelSerializer):
             usuario=self.context["request"].user,
             **validated_data
         )
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
+
+class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        # Permite login com email ou username
+        attrs['username'] = attrs.get('email', attrs.get('username'))
+        return super().validate(attrs)
+    
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        # Aceita username ou email
+        username_or_email = attrs.get('username')
+        password = attrs.get('password')
+
+        if '@' in username_or_email:
+            try:
+                user = User.objects.get(email=username_or_email)
+                attrs['username'] = user.username  # Substitui pelo username real
+            except User.DoesNotExist:
+                pass
+                
+        return super().validate(attrs)
