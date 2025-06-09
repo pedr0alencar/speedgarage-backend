@@ -1,22 +1,24 @@
+# reviews/views.py
 from rest_framework import viewsets, permissions, filters
 from rest_framework.exceptions import PermissionDenied
 from .models import Carro, Critica
-from .serializers import CarroSerializer, CriticaSerializer
-from rest_framework.serializers import ModelSerializer
+from .serializers import (
+    CarroSerializer,
+    CriticaSerializer,
+    RegisterSerializer,
+    EmailTokenObtainPairSerializer,
+    CustomTokenObtainPairSerializer,
+)
 from rest_framework import generics
 from django.contrib.auth.models import User
 from rest_framework.permissions import AllowAny
-from .serializers import RegisterSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import EmailTokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomTokenObtainPairSerializer
 
 
 class CarroViewSet(viewsets.ModelViewSet):
     queryset = Carro.objects.all()
     serializer_class = CarroSerializer
-    permission_classes = [permissions.IsAuthenticated]   # ← exige token para qualquer método
+    permission_classes = [permissions.IsAuthenticated]          # exige login
     filter_backends = [filters.SearchFilter]
     search_fields = ["marca", "modelo", "ano"]
 
@@ -27,6 +29,18 @@ class CriticaViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter]
     search_fields = ["carro__marca", "carro__modelo", "texto"]
+
+    # NEW ➜ passa o request para o serializer
+    def get_serializer_context(self):
+        ctx = super().get_serializer_context()
+        ctx["request"] = self.request
+        return ctx
+
+    # NEW ➜ garante autor correto (opção 1)
+    # Você pode omitir se o serializer já salva usuario=request.user
+    def perform_create(self, serializer):
+        # o serializer vai cuidar de atribuir o usuário
+        serializer.save()
 
     # Somente o autor pode editar/excluir
     def perform_update(self, serializer):
@@ -39,15 +53,11 @@ class CriticaViewSet(viewsets.ModelViewSet):
             raise PermissionDenied("Apenas o autor pode excluir.")
         instance.delete()
 
+
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
-    
-    
-class EmailTokenObtainPairView(TokenObtainPairView):
-    serializer_class = EmailTokenObtainPairSerializer
-    
-    
+
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
