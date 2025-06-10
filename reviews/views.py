@@ -19,7 +19,9 @@ class CarroViewSet(viewsets.ModelViewSet):
     queryset = Carro.objects.all()
     serializer_class = CarroSerializer
     permission_classes = [permissions.IsAuthenticated]          # exige login
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ["marca", "modelo", "ano"]  # ← campos permitidos
+    ordering = ["-ano"]
     search_fields = ["marca", "modelo", "ano"]
 
 
@@ -27,7 +29,9 @@ class CriticaViewSet(viewsets.ModelViewSet):
     queryset = Critica.objects.select_related("carro", "usuario")
     serializer_class = CriticaSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ["avaliacao", "criado_em", "carro__ano"]
+    ordering = ["-criado_em"]
     search_fields = ["carro__marca", "carro__modelo", "texto"]
 
     # NEW ➜ passa o request para o serializer
