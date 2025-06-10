@@ -18,9 +18,14 @@ class CriticaSerializer(serializers.ModelSerializer):
     class Meta:
         model  = Critica
         # Apenas os campos básicos: carro, avaliacao, texto, criado_em
-        fields = ["id", "usuario_nome","carro_nome", "avaliacao", "texto", "criado_em"]
+        fields = ["id", "carro",  # ← novo
+                 "usuario_nome", "carro_nome",
+                 "avaliacao", "texto", "criado_em"]
         read_only_fields = ["usuario", "criado_em"]
-        
+        extra_kwargs = {
+            "carro": {"write_only": True}
+        }
+
     def get_usuario_nome(self, obj):
         return obj.usuario.username  
 
@@ -56,7 +61,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         username_or_email = attrs.get('username')
         password = attrs.get('password')
 
-        # Sua lógica para permitir login com email (que está ótima)
+        # lógica para permitir login com email (que está ótima)
         if '@' in username_or_email:
             try:
                 # Encontra o usuário pelo email
@@ -67,7 +72,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                 # Se não encontrar, a validação padrão abaixo irá falhar, o que é o esperado
                 pass
         
-        # 1. Chama o método original para obter os tokens
+        # 1. Chama o metodo original para obter os tokens
         # Ele autentica o usuário e retorna {'access': '...', 'refresh': '...'}
         data = super().validate(attrs)
         
