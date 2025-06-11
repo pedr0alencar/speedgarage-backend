@@ -144,6 +144,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
+    "DEFAULT_FILTER_BACKENDS": [
+        "rest_framework.filters.OrderingFilter",  # <- ordering
+        "rest_framework.filters.SearchFilter",
+    ],
     "DEFAULT_PAGINATION_CLASS": "reviews.pagination.DefaultLimitOffsetPagination",
     "PAGE_SIZE": 5,
 #    "DEFAULT_PAGINATION_CLASS": "reviews.pagination.DefaultPagination",
