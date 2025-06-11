@@ -206,3 +206,26 @@ def test_busca_por_criticas(api_client, usuario_autenticado):
     assert resp.status_code == 200
     assert resp.data['count'] == 1
     assert resp.data['results'][0]['carro_nome'] == 'Ka'
+
+    @pytest.mark.django_db
+    def test_avaliacao_fora_do_intervalo(api_client, usuario_autenticado):
+        carro = Carro.objects.create(marca='Chevrolet', modelo='Onix', ano=2021)
+        api_client.credentials(HTTP_AUTHORIZATION='Bearer ' + usuario_autenticado["token"])
+
+        # Testa avaliação 0 (inválida)
+        resp = api_client.post('/api/reviews/', {
+            'carro': carro.id,
+            'avaliacao': 0,
+            'texto': 'Nota zero'
+        }, format='json')
+        assert resp.status_code == 400
+        assert "A avaliação deve ser entre 1 e 5." in str(resp.data)
+
+        # Testa avaliação 6 (inválida)
+        resp = api_client.post('/api/reviews/', {
+            'carro': carro.id,
+            'avaliacao': 6,
+            'texto': 'Nota seis'
+        }, format='json')
+        assert resp.status_code == 400
+        assert "A avaliação deve ser entre 1 e 5." in str(resp.data)
