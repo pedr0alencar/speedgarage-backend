@@ -168,3 +168,41 @@ def test_excluir_critica_somente_autor(api_client, usuario_autenticado):
         assert response.data['texto'] == 'Detalhe dessa crítica'
         assert response.data['avaliacao'] == 5
         assert response.data['carro_nome'] == carro.modelo
+
+@pytest.mark.django_db
+def test_busca_por_criticas(api_client, usuario_autenticado):
+    # Cria um carro para a primeira crítica
+    carro1 = Carro.objects.create(marca='Fiat', modelo='Uno', ano=2010)
+    # Autentica com o token do usuário criado pela fixture
+    api_client.credentials(HTTP_AUTHORIZATION='Bearer ' + usuario_autenticado["token"])
+    # Crítica 1
+    resp = api_client.post('/api/reviews/', {
+        'carro': carro1.id,
+        'avaliacao': 4,
+        'texto': 'Ótimo desempenho'
+    }, format='json')
+    assert resp.status_code == 201
+
+    # Cria outro carro e outra crítica
+    carro2 = Carro.objects.create(marca='Ford', modelo='Ka', ano=2022)
+    resp = api_client.post('/api/reviews/', {
+        'carro': carro2.id,
+        'avaliacao': 3,
+        'texto': 'Consome pouco'
+    }, format='json')
+    assert resp.status_code == 201
+
+    # Remove token (simula acesso público)
+    api_client.credentials()
+
+    # Busca por texto da crítica
+    resp = api_client.get('/api/reviews/?search=desempenho')
+    assert resp.status_code == 200
+    assert resp.data['count'] == 1
+    assert resp.data['results'][0]['texto'] == 'Ótimo desempenho'
+
+    # Busca por modelo do carro
+    resp = api_client.get('/api/reviews/?search=Ka')
+    assert resp.status_code == 200
+    assert resp.data['count'] == 1
+    assert resp.data['results'][0]['carro_nome'] == 'Ka'
