@@ -149,3 +149,22 @@ def test_excluir_critica_somente_autor(api_client, usuario_autenticado):
     api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {other_token}")
     resp_del_forbidden = api_client.delete(f"/api/reviews/{review2.id}/")
     assert resp_del_forbidden.status_code == 403
+
+    def test_detalhar_critica(client, user_token, carro, user):
+        # Cria crítica
+        client.credentials(HTTP_AUTHORIZATION='Bearer ' + user_token)
+        response = client.post('/api/reviews/', {
+            'carro': carro.id,
+            'avaliacao': 5,
+            'texto': 'Detalhe dessa crítica'
+        })
+        assert response.status_code == 201
+        critica_id = response.data['id']
+
+        # GET sem token (público)
+        client.credentials()  # remove token
+        response = client.get(f'/api/reviews/{critica_id}/')
+        assert response.status_code == 200
+        assert response.data['texto'] == 'Detalhe dessa crítica'
+        assert response.data['avaliacao'] == 5
+        assert response.data['carro_nome'] == carro.modelo
