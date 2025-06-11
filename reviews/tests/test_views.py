@@ -229,3 +229,15 @@ def test_busca_por_criticas(api_client, usuario_autenticado):
         }, format='json')
         assert resp.status_code == 400
         assert "A avaliação deve ser entre 1 e 5." in str(resp.data)
+
+    @pytest.mark.django_db
+    def test_criar_critica_sem_token(api_client):
+        carro = Carro.objects.create(marca='Volkswagen', modelo='Gol', ano=2022)
+
+        # Não autentica o cliente!
+        resp = api_client.post('/api/reviews/', {
+            'carro': carro.id,
+            'avaliacao': 4,
+            'texto': 'Não deveria criar'
+        }, format='json')
+        assert resp.status_code == 401
