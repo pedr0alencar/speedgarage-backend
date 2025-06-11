@@ -39,6 +39,11 @@ class CriticaSerializer(serializers.ModelSerializer):
             **validated_data
         )
 
+    def validate_avaliacao(self, value):
+        if not 1 <= value <= 5:
+            raise serializers.ValidationError("A avaliação deve ser entre 1 e 5.")
+        return value
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
