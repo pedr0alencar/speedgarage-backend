@@ -241,3 +241,19 @@ def test_busca_por_criticas(api_client, usuario_autenticado):
             'texto': 'Não deveria criar'
         }, format='json')
         assert resp.status_code == 401
+
+    @pytest.mark.django_db
+    def test_editar_carro(api_client, usuario_autenticado):
+        token = usuario_autenticado["token"]
+        api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
+
+        # Cria um carro
+        carro = Carro.objects.create(marca="Honda", modelo="Civic", ano=2018)
+
+        # Edição dos dados do carro
+        data_edit = {"marca": "Honda", "modelo": "Civic", "ano": 2025}
+        resp_edit = api_client.put(f"/api/cars/{carro.id}/", data_edit, format="json")
+        assert resp_edit.status_code == 200
+        assert resp_edit.data["ano"] == 2025
+        assert resp_edit.data["marca"] == "Honda"
+        assert resp_edit.data["modelo"] == "Civic"
