@@ -273,3 +273,18 @@ def test_busca_por_criticas(api_client, usuario_autenticado):
         # Confirma que não existe mais
         from reviews.models import Carro
         assert not Carro.objects.filter(id=carro.id).exists()
+
+    @pytest.mark.django_db
+    def test_carro_duplicado(api_client, usuario_autenticado):
+        token = usuario_autenticado["token"]
+        api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
+
+        data = {"marca": "Fiat", "modelo": "Uno", "ano": 2010}
+
+        # Primeiro cadastro (deve funcionar)
+        resp1 = api_client.post("/api/cars/", data, format="json")
+        assert resp1.status_code == 201
+
+        # Tenta duplicar (deve dar erro)
+        resp2 = api_client.post("/api/cars/", data, format="json")
+        assert resp2.status_code in (400, 500)
