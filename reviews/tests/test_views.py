@@ -257,3 +257,19 @@ def test_busca_por_criticas(api_client, usuario_autenticado):
         assert resp_edit.data["ano"] == 2025
         assert resp_edit.data["marca"] == "Honda"
         assert resp_edit.data["modelo"] == "Civic"
+
+    @pytest.mark.django_db
+    def test_deletar_carro(api_client, usuario_autenticado):
+        token = usuario_autenticado["token"]
+        api_client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
+
+        # Cria um carro
+        carro = Carro.objects.create(marca="Renault", modelo="Sandero", ano=2015)
+
+        # Deleta o carro
+        resp_delete = api_client.delete(f"/api/cars/{carro.id}/")
+        assert resp_delete.status_code == 204
+
+        # Confirma que não existe mais
+        from reviews.models import Carro
+        assert not Carro.objects.filter(id=carro.id).exists()
