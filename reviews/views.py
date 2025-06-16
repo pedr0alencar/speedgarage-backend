@@ -57,6 +57,12 @@ class CriticaViewSet(viewsets.ModelViewSet):
             raise PermissionDenied("Apenas o autor pode excluir.")
         instance.delete()
 
+    def get_queryset(self):
+        if self.action == 'list':
+            return Critica.objects.filter(usuario=self.request.user).select_related("carro", "usuario")
+        return super().get_queryset()
+
+
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()

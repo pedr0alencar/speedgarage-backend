@@ -8,7 +8,6 @@ router.register(r'cars', CarroViewSet, basename='carro')
 router.register(r'reviews', CriticaViewSet, basename='critica')
 
 urlpatterns = [
-    path('', include(router.urls)),  # Rotas: /cars/ e /reviews/
-    path('register/', RegisterView.as_view(), name='register'),  # ← Agora a URL correta é /api/register/
-    # Remova as rotas JWT daqui (elas devem ficar só no urls.py principal)
+    path('', include(router.urls)),
+    path('register/', RegisterView.as_view(), name='register'),
 ]
