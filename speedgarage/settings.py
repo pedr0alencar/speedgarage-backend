@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt',
+    'storages',
 
     # Apps do projeto
     'reviews',
@@ -133,6 +134,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 # WhiteNoise já está configurado no MIDDLEWARE para servir estes arquivos
+
+# ------------------------------------------------------------------
+# Arquivos de mídia – Cloudinary
+# ------------------------------------------------------------------
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY":    os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+}
+DEFAULT_FILE_STORAGE = "storages.backends.cloudinary.CloudinaryStorage"
+MEDIA_URL = f"https://res.cloudinary.com/{os.getenv('CLOUDINARY_CLOUD_NAME')}/"
 
 # ------------------------------------------------------------------
 # REST Framework + JWT
