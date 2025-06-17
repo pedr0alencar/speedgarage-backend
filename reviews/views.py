@@ -58,16 +58,29 @@ class CriticaViewSet(viewsets.ModelViewSet):
         instance.delete()
 
     def get_queryset(self):
-        if self.action == 'list':
-            return Critica.objects.filter(usuario=self.request.user).select_related("carro", "usuario")
-        return super().get_queryset()
+        action = getattr(self, 'action', None)
+        print(f"User: {self.request.user} - authenticated? {self.request.user.is_authenticated}")
 
+        if action == 'list':
+            my_param = self.request.query_params.get('my')
+            if my_param == 'true':
+                if self.request.user.is_authenticated:
+                    qs = Critica.objects.filter(usuario=self.request.user).select_related("carro", "usuario")
+                    print(f"Returning {qs.count()} reviews for user")
+                    return qs
+                else:
+                    print("User not authenticated")
+                    return Critica.objects.none()
+            else:
+                return Critica.objects.select_related("carro", "usuario").all()
+        return super().get_queryset()   
 
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
+
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
