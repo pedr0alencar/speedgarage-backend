@@ -58,22 +58,22 @@ class CriticaViewSet(viewsets.ModelViewSet):
         instance.delete()
 
     def get_queryset(self):
-        action = getattr(self, 'action', None)
-        print(f"User: {self.request.user} - authenticated? {self.request.user.is_authenticated}")
+        my_param = self.request.query_params.get('my', '').lower()
+        user = self.request.user
 
-        if action == 'list':
-            my_param = self.request.query_params.get('my')
-            if my_param == 'true':
-                if self.request.user.is_authenticated:
-                    qs = Critica.objects.filter(usuario=self.request.user).select_related("carro", "usuario")
-                    print(f"Returning {qs.count()} reviews for user")
-                    return qs
-                else:
-                    print("User not authenticated")
-                    return Critica.objects.none()
+        print(f"[DEBUG] Query param: my={my_param}")
+        print(f"[DEBUG] User: {user} ({type(user)}) - authenticated? {user.is_authenticated}")
+
+        if my_param == 'true':
+            if user.is_authenticated:
+                qs = Critica.objects.filter(usuario=user).select_related("carro", "usuario")
+                print(f"[DEBUG] Returning {qs.count()} reviews for user {user}")
+                return qs
             else:
-                return Critica.objects.select_related("carro", "usuario").all()
-        return super().get_queryset()   
+                print("[DEBUG] User is not authenticated.")
+                return Critica.objects.none()
+
+        return Critica.objects.select_related("carro", "usuario").all()   
 
 
 class RegisterView(generics.CreateAPIView):
