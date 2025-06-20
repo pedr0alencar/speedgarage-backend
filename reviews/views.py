@@ -13,6 +13,8 @@ from rest_framework import generics
 from django.contrib.auth.models import User
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 
 class CarroViewSet(viewsets.ModelViewSet):
@@ -23,6 +25,27 @@ class CarroViewSet(viewsets.ModelViewSet):
     ordering_fields = ["marca", "modelo", "ano"]  # ← campos permitidos
     ordering = ["-ano"]
     search_fields = ["marca", "modelo", "ano"]
+    @action(detail=False, methods=['get'])
+    def marcas(self, request):
+        marcas = Carro.objects.values_list('marca', flat=True).distinct()
+        return Response(marcas)
+
+    @action(detail=False, methods=['get'])
+    def modelos(self, request):
+        marca = request.query_params.get('marca')
+        if not marca:
+            return Response({"error": "Parâmetro 'marca' é obrigatório."}, status=400)
+        modelos = Carro.objects.filter(marca=marca).values_list('modelo', flat=True).distinct()
+        return Response(modelos)
+
+    @action(detail=False, methods=['get'])
+    def anos(self, request):
+        marca = request.query_params.get('marca')
+        modelo = request.query_params.get('modelo')
+        if not marca or not modelo:
+            return Response({"error": "Parâmetros 'marca' e 'modelo' são obrigatórios."}, status=400)
+        anos = Carro.objects.filter(marca=marca, modelo=modelo).values_list('ano', flat=True).distinct()
+        return Response(anos)
 
 
 class CriticaViewSet(viewsets.ModelViewSet):
