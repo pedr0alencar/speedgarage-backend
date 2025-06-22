@@ -1,5 +1,6 @@
 # reviews/views.py
 from rest_framework import viewsets, permissions, filters
+from django.db.models import Avg
 from rest_framework.exceptions import PermissionDenied
 from .models import Carro, Critica
 from .serializers import (
@@ -18,13 +19,14 @@ from rest_framework.response import Response
 
 
 class CarroViewSet(viewsets.ModelViewSet):
-    queryset = Carro.objects.all()
+    queryset = Carro.objects.all().annotate(media_avaliacao=Avg('critica__avaliacao'))
     serializer_class = CarroSerializer
     permission_classes = [permissions.IsAuthenticated]          # exige login
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
-    ordering_fields = ["marca", "modelo", "ano"]  # ← campos permitidos
+    ordering_fields = ["marca", "modelo", "ano", "media_avaliacao"]
     ordering = ["-ano"]
     search_fields = ["marca", "modelo", "ano"]
+
     @action(detail=False, methods=['get'])
     def marcas(self, request):
         marcas = Carro.objects.values_list('marca', flat=True).distinct()
@@ -46,6 +48,25 @@ class CarroViewSet(viewsets.ModelViewSet):
             return Response({"error": "Parâmetros 'marca' e 'modelo' são obrigatórios."}, status=400)
         anos = Carro.objects.filter(marca=marca, modelo=modelo).values_list('ano', flat=True).distinct()
         return Response(anos)
+
+    @action(detail=False, methods=['get'])
+    def top(self, request):
+        """
+        Retorna os N carros com maior média de avaliação.
+        Query param 'n' define quantos retornar (padrão 3).
+        """
+        try:
+            n = int(request.query_params.get('n', 3))
+        except ValueError:
+            return Response({"error": "Parâmetro 'n' deve ser um inteiro."}, status=400)
+
+        top_cars = (
+            Carro.objects
+            .annotate(media_avaliacao=Avg('critica__avaliacao'))
+            .order_by('-media_avaliacao')[:n]
+        )
+        serializer = self.get_serializer(top_cars, many=True)
+        return Response(serializer.data)
 
 
 class CriticaViewSet(viewsets.ModelViewSet):
