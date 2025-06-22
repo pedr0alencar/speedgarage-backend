@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate
 from rest_framework import serializers
 
 class CarroSerializer(serializers.ModelSerializer):
+    media_avaliacao = serializers.FloatField(read_only=True)
     class Meta:
         model  = Carro
         fields = "__all__"
