@@ -117,7 +117,19 @@ class CriticaViewSet(viewsets.ModelViewSet):
                 print("[DEBUG] User is not authenticated.")
                 return Critica.objects.none()
 
-        return Critica.objects.select_related("carro", "usuario").all()   
+        return Critica.objects.select_related("carro", "usuario").all()
+
+    @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def like(self, request, pk=None):
+        review = self.get_object()
+        review.liked_users.add(request.user)
+        return Response({'total_likes': review.liked_users.count()}, status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=['post'], permission_classes=[permissions.IsAuthenticated])
+    def unlike(self, request, pk=None):
+        review = self.get_object()
+        review.liked_users.remove(request.user)
+        return Response({'total_likes': review.liked_users.count()}, status=status.HTTP_200_OK)
 
 
 class RegisterView(generics.CreateAPIView):
