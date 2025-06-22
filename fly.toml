@@ -10,10 +10,7 @@ console_command = '/code/manage.py shell'
 [build]
 
 [deploy]
-  release_command = """
-python manage.py migrate &&
-python manage.py createinitialsuperuser
-"""
+  release_command = "/bin/sh -c 'python manage.py migrate && python manage.py createinitialsuperuser'"
 
 [env]
   PORT = '8000'
