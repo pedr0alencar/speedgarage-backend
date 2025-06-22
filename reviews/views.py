@@ -2,13 +2,14 @@
 from rest_framework import viewsets, permissions, filters
 from django.db.models import Avg
 from rest_framework.exceptions import PermissionDenied
-from .models import Carro, Critica
+from .models import Carro, Critica, CarroImagem
 from .serializers import (
     CarroSerializer,
     CriticaSerializer,
     RegisterSerializer,
     EmailTokenObtainPairSerializer,
     CustomTokenObtainPairSerializer,
+    CarroImagemSerializer,
 )
 from rest_framework import generics
 from django.contrib.auth.models import User
@@ -16,6 +17,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser
 
 
 class CarroViewSet(viewsets.ModelViewSet):
@@ -128,3 +130,8 @@ class RegisterView(generics.CreateAPIView):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+class CarroImagemViewSet(viewsets.ModelViewSet):
+    queryset = CarroImagem.objects.all()
+    serializer_class = CarroImagemSerializer
+    parser_classes = [MultiPartParser]
