@@ -19,7 +19,7 @@ from rest_framework.response import Response
 
 
 class CarroViewSet(viewsets.ModelViewSet):
-    queryset = Carro.objects.all().annotate(media_avaliacao=Avg('critica__avaliacao'))
+    queryset = Carro.objects.all().annotate(media_avaliacao=Avg('criticas__avaliacao'))
     serializer_class = CarroSerializer
     permission_classes = [permissions.IsAuthenticated]          # exige login
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
