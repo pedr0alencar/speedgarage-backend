@@ -16,6 +16,11 @@ class CarroSerializer(serializers.ModelSerializer):
 class CriticaSerializer(serializers.ModelSerializer):
     usuario_nome = serializers.SerializerMethodField()
     carro_nome = serializers.SerializerMethodField()
+    total_likes = serializers.IntegerField(
+        source='liked_users.count',
+        read_only=True
+    )
+    liked_by_me = serializers.SerializerMethodField()
     class Meta:
         model  = Critica
         # Apenas os campos básicos: carro, avaliacao, texto, criado_em
@@ -44,6 +49,12 @@ class CriticaSerializer(serializers.ModelSerializer):
         if not 1 <= value <= 5:
             raise serializers.ValidationError("A avaliação deve ser entre 1 e 5.")
         return value
+
+    def get_liked_by_me(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            return obj.liked_users.filter(pk=user.pk).exists()
+        return False
 
 
 class RegisterSerializer(serializers.ModelSerializer):
