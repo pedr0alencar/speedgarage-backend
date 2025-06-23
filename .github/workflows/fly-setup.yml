@@ -29,7 +29,7 @@ jobs:
 
       - name: Criar o novo App no Fly
         run: |
-          flyctl apps create $APP_NAME --region $PRIMARY_REGION --org personal --yes
+          bash\nflyctl apps create $APP_NAME --org personal --yes\n
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
