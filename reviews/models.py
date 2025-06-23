@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Carro(models.Model):
@@ -75,3 +76,9 @@ class Critica(models.Model):
 
     def __str__(self):
         return f"{self.carro} – {self.avaliacao}★ por {self.usuario.username}"
+
+    liked_users = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name='liked_reviews',
+        blank=True,
+    )
