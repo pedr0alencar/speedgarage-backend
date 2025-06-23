@@ -16,17 +16,23 @@ class CarroSerializer(serializers.ModelSerializer):
 class CriticaSerializer(serializers.ModelSerializer):
     usuario_nome = serializers.SerializerMethodField()
     carro_nome = serializers.SerializerMethodField()
+    carro_marca = serializers.SerializerMethodField()
+    carro_ano = serializers.SerializerMethodField()
     total_likes = serializers.IntegerField(
         source='liked_users.count',
         read_only=True
     )
     liked_by_me = serializers.SerializerMethodField()
+
     class Meta:
         model  = Critica
-        # Apenas os campos básicos: carro, avaliacao, texto, criado_em
-        fields = ["id", "carro",  # ← novo
-                 "usuario_nome", "carro_nome",
-                 "avaliacao", "texto", "criado_em",  "total_likes", "liked_by_me"]
+        fields = [
+            "id", "carro",  # write_only
+            "usuario_nome",
+            "carro_nome", "carro_marca", "carro_ano",  # <-- NOVOS CAMPOS AQUI
+            "avaliacao", "texto", "criado_em",  
+            "total_likes", "liked_by_me"
+        ]
         read_only_fields = ["usuario", "criado_em"]
         extra_kwargs = {
             "carro": {"write_only": True}
@@ -38,8 +44,13 @@ class CriticaSerializer(serializers.ModelSerializer):
     def get_carro_nome(self, obj):
         return obj.carro.modelo 
 
+    def get_carro_marca(self, obj):
+        return obj.carro.marca
+
+    def get_carro_ano(self, obj):
+        return obj.carro.ano
+
     def create(self, validated_data):
-        # Garante que o 'usuario' seja o usuário logado
         return Critica.objects.create(
             usuario=self.context["request"].user,
             **validated_data

@@ -62,7 +62,7 @@ class CarroViewSet(viewsets.ModelViewSet):
 
         top_cars = (
             Carro.objects
-            .annotate(media_avaliacao=Avg('critica__avaliacao'))
+            .annotate(media_avaliacao=Avg('criticas__avaliacao'))
             .order_by('-media_avaliacao')[:n]
         )
         serializer = self.get_serializer(top_cars, many=True)
