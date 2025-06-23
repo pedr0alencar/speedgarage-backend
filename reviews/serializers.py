@@ -26,7 +26,7 @@ class CriticaSerializer(serializers.ModelSerializer):
         # Apenas os campos básicos: carro, avaliacao, texto, criado_em
         fields = ["id", "carro",  # ← novo
                  "usuario_nome", "carro_nome",
-                 "avaliacao", "texto", "criado_em",  "total_likes"]
+                 "avaliacao", "texto", "criado_em",  "total_likes", "liked_by_me"]
         read_only_fields = ["usuario", "criado_em"]
         extra_kwargs = {
             "carro": {"write_only": True}
