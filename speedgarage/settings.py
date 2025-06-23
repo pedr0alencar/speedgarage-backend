@@ -20,6 +20,10 @@ DEBUG = os.getenv("DJANGO_DEBUG", "True") == "True"
 ALLOWED_HOSTS = os.getenv(
     "DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1",
 ).split(",")
+CSRF_TRUSTED_ORIGINS = os.getenv(
+    "DJANGO_CSRF_TRUSTED_ORIGINS",
+    "https://*.railway.app"
+).split(",")
 
 # --------------------------------------------------
 # Apps instalados
