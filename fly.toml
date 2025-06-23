@@ -1,33 +1,62 @@
-# fly.toml app configuration file generated for speedgarage-web on 2025-06-22T20:15:40-03:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
+# fly.toml — SpeedGarage (backend)
+# Gerado originalmente em 2025-06-22 e ajustado para usar o cluster
+# Postgres speedgarage-db + gunicorn.
 
-app = 'speedgarage-web'
-primary_region = 'gig'
-console_command = '/code/manage.py shell'
+app = "speedgarage-web"
+primary_region = "gig"          # mude se quiser outro datacenter
+console_command = "/code/manage.py shell"
 
+################################
+# BUILD
+################################
 [build]
+# (imagem será detectada a partir do Dockerfile → python:3.12)
 
+################################
+# DEPLOY
+################################
 [deploy]
-  release_command = "/bin/sh -c 'python manage.py migrate && python manage.py createinitialsuperuser'"
+# Executa migrations + criação de superuser (idempotente).
+release_command = "/bin/sh -c 'python manage.py migrate --noinput && python manage.py createinitialsuperuser'"
 
+################################
+# VARIÁVEIS DE AMBIENTE
+################################
 [env]
-  PORT = '8000'
+PORT = "8000"
+# A DATABASE_URL já vem do segredo gerado via:
+# flyctl -a speedgarage-web secrets set DATABASE_URL="postgres://..."
+# (não coloque aqui em texto-plano)
 
+################################
+# SERVIÇO HTTP
+################################
 [http_service]
-  internal_port = 8000
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
+internal_port       = 8000
+force_https         = true
+auto_stop_machines  = "stop"
+auto_start_machines = true
+min_machines_running = 0        # 0 = escala para zero quando ocioso
+processes = ["app"]
 
+################################
+# PROCESSOS
+################################
+[processes]
+# gunicorn com 3 workers -> ajuste se quiser menos/memória
+app = "gunicorn speedgarage.wsgi:application --bind :8000 --workers 3 --log-level info"
+
+################################
+# VMs
+################################
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
+memory   = "1gb"
+cpu_kind = "shared"
+cpus     = 1
 
+################################
+# ARQUIVOS ESTÁTICOS
+################################
 [[statics]]
-  guest_path = '/code/static'
-  url_prefix = '/static/'
+guest_path = "/code/static"
+url_prefix = "/static/"
