@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Carro, Critica
+from .models import Carro, CarroImagem, Critica
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
@@ -15,7 +15,9 @@ class CarroSerializer(serializers.ModelSerializer):
 
 class CriticaSerializer(serializers.ModelSerializer):
     usuario_nome = serializers.SerializerMethodField()
-    carro_nome = serializers.SerializerMethodField()
+
+    carro_marca = serializers.SerializerMethodField()
+    carro_ano = serializers.SerializerMethodField()
     total_likes = serializers.IntegerField(
         source='liked_users.count',
         read_only=True
@@ -33,10 +35,16 @@ class CriticaSerializer(serializers.ModelSerializer):
         }
 
     def get_usuario_nome(self, obj):
-        return obj.usuario.username  
+        return obj.usuario.username
+    
+    def get_carro_marca(self, obj):
+        return obj.carro.marca
 
     def get_carro_nome(self, obj):
         return obj.carro.modelo 
+    
+    def get_carro_ano(self, obj):
+        return obj.carro.ano
 
     def create(self, validated_data):
         # Garante que o 'usuario' seja o usuário logado
@@ -103,3 +111,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         
         # 3. Retorna o dicionário completo: tokens + dados do usuário
         return data
+    
+class CarroImagemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CarroImagem
+        fields = ["id", "carro", "tipo", "foto"]
