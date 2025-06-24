@@ -53,7 +53,8 @@ def unload_iconic(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("reviews", "0002_auto"),      # coloque aqui a última migração existente
+        ("reviews", "0004_carroimagem"),  # ← último número real
+        ("auth", "0012_alter_user_first_name_max_length"),  # garante a tabela User
     ]
 
     operations = [
