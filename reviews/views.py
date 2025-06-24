@@ -79,6 +79,7 @@ class CriticaViewSet(viewsets.ModelViewSet):
     ordering_fields = ["avaliacao", "criado_em", "carro__ano"]
     ordering = ["-criado_em"]
     search_fields = ["carro__marca", "carro__modelo", "texto"]
+    parser_classes = [MultiPartParser]
 
     # NEW ➜ passa o request para o serializer
     def get_serializer_context(self):
