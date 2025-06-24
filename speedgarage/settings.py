@@ -154,8 +154,9 @@ SIMPLE_JWT = {
 # CORS
 # --------------------------------------------------
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
+    "https://front-end-speed-garage.vercel.app",
 ]
+
 
 # --------------------------------------------------
 # Chave primária padrão
