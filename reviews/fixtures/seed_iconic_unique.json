@@ -1,0 +1,822 @@
+[
+  {
+    "model": "reviews.carro",
+    "pk": 1,
+    "fields": {
+      "marca": "DeLorean",
+      "modelo": "DMC‑12",
+      "ano": 1981
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 2,
+    "fields": {
+      "marca": "Ford",
+      "modelo": "Shelby GT500 “Eleanor”",
+      "ano": 1967
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 3,
+    "fields": {
+      "marca": "Toyota",
+      "modelo": "AE86 Sprinter Trueno",
+      "ano": 1985
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 4,
+    "fields": {
+      "marca": "Wayne Enterprises",
+      "modelo": "Batmobile (1966)",
+      "ano": 1966
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 5,
+    "fields": {
+      "marca": "Wayne Enterprises",
+      "modelo": "Batmobile Tumbler",
+      "ano": 2005
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 6,
+    "fields": {
+      "marca": "Nissan",
+      "modelo": "Skyline GT‑R R34",
+      "ano": 1999
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 7,
+    "fields": {
+      "marca": "Toyota",
+      "modelo": "Supra Mk4 Laranja",
+      "ano": 1995
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 8,
+    "fields": {
+      "marca": "Pontiac",
+      "modelo": "Firebird Trans Am (KITT)",
+      "ano": 1982
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 9,
+    "fields": {
+      "marca": "Mini",
+      "modelo": "Cooper S (Italian Job)",
+      "ano": 2003
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 10,
+    "fields": {
+      "marca": "Aston Martin",
+      "modelo": "DB5 (007)",
+      "ano": 1964
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 11,
+    "fields": {
+      "marca": "Mitsubishi",
+      "modelo": "Lancer Evolution VII",
+      "ano": 2001
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 12,
+    "fields": {
+      "marca": "Pontiac",
+      "modelo": "Trans Am 1977",
+      "ano": 1977
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 13,
+    "fields": {
+      "marca": "Ferrari",
+      "modelo": "250 GTO",
+      "ano": 1962
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 14,
+    "fields": {
+      "marca": "Bugatti",
+      "modelo": "Veyron",
+      "ano": 2005
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 15,
+    "fields": {
+      "marca": "Ferrari",
+      "modelo": "F40",
+      "ano": 1987
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 16,
+    "fields": {
+      "marca": "Lamborghini",
+      "modelo": "Countach",
+      "ano": 1985
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 17,
+    "fields": {
+      "marca": "Toyota",
+      "modelo": "Hilux (Top Gear)",
+      "ano": 1988
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 18,
+    "fields": {
+      "marca": "Tesla",
+      "modelo": "Cybertruck",
+      "ano": 2024
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 19,
+    "fields": {
+      "marca": "BMW",
+      "modelo": "M3 E30",
+      "ano": 1990
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 20,
+    "fields": {
+      "marca": "Volkswagen",
+      "modelo": "Beetle (Herbie)",
+      "ano": 1963
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 21,
+    "fields": {
+      "marca": "Volkswagen",
+      "modelo": "Kombi 1966",
+      "ano": 1966
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 22,
+    "fields": {
+      "marca": "Fiat",
+      "modelo": "Marea 2.0 20V (Bomba)",
+      "ano": 1999
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 23,
+    "fields": {
+      "marca": "Fiat",
+      "modelo": "Uno Mille (GOAT)",
+      "ano": 1995
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 24,
+    "fields": {
+      "marca": "Ford",
+      "modelo": "Model T",
+      "ano": 1908
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 25,
+    "fields": {
+      "marca": "Mercedes‑Benz",
+      "modelo": "300 SL Gullwing",
+      "ano": 1955
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 26,
+    "fields": {
+      "marca": "Jeep",
+      "modelo": "Wrangler (Jurassic Park)",
+      "ano": 1992
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 27,
+    "fields": {
+      "marca": "Cadillac",
+      "modelo": "Ecto‑1 (Ghostbusters)",
+      "ano": 1959
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 28,
+    "fields": {
+      "marca": "Plymouth",
+      "modelo": "Fury (Christine)",
+      "ano": 1958
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 29,
+    "fields": {
+      "marca": "Toyota",
+      "modelo": "Prius",
+      "ano": 2008
+    }
+  },
+  {
+    "model": "reviews.carro",
+    "pk": 30,
+    "fields": {
+      "marca": "Honda",
+      "modelo": "Civic Type R EK9",
+      "ano": 1997
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 1,
+    "fields": {
+      "usuario": 1,
+      "carro": 23,
+      "avaliacao": 3,
+      "texto": "Primeira marcha e já rei dos quebra‑molas. Atrai olhares até de cachorros. Nota final: 4/5 — compraria de novo sem pensar! Se precisar fugir de zumbis, é só abaixar os bancos e partir pro off‑road!",
+      "criado_em": "2023-12-06T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 2,
+    "fields": {
+      "usuario": 1,
+      "carro": 5,
+      "avaliacao": 3,
+      "texto": "Primeira marcha e já do Batman de Nolan. O interior cheira a gasolina premium, puro charme. Resumo: não economiza, mas emociona",
+      "criado_em": "2025-03-22T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 3,
+    "fields": {
+      "usuario": 1,
+      "carro": 21,
+      "avaliacao": 5,
+      "texto": "A vizinhança inteira ouviu quando eu van hippie. O interior cheira a gasolina premium, puro charme. Nota final: 5/5 — compraria de novo sem pensar!",
+      "criado_em": "2024-04-13T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 4,
+    "fields": {
+      "usuario": 1,
+      "carro": 18,
+      "avaliacao": 4,
+      "texto": "Dirigi e me senti dentro dos memes afiados. O ronco do motor é orquestral. Resumo: melhor que terapia",
+      "criado_em": "2025-02-14T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 5,
+    "fields": {
+      "usuario": 1,
+      "carro": 2,
+      "avaliacao": 5,
+      "texto": "Primeira marcha e já de 60 Segundos. O interior cheira a graxa vintage, puro charme. Conclusão? carro do coração",
+      "criado_em": "2025-01-17T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 6,
+    "fields": {
+      "usuario": 1,
+      "carro": 30,
+      "avaliacao": 4,
+      "texto": "Coloquei a chave, girei e VTec kicks in yo. Nas curvas, ele se comporta como um foguete. Conclusão? melhor que terapia",
+      "criado_em": "2025-01-12T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 7,
+    "fields": {
+      "usuario": 1,
+      "carro": 26,
+      "avaliacao": 3,
+      "texto": "Dirigi e me senti dentro dos dinossauros. Consome combustível como um beija‑flor no néctar. Conclusão? melhor que terapia",
+      "criado_em": "2025-05-31T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 8,
+    "fields": {
+      "usuario": 1,
+      "carro": 22,
+      "avaliacao": 5,
+      "texto": "Coloquei a chave, girei e lenda das oficinas. Consome combustível como político em diárias. Resumo: carro do coração Ainda bem que combustível apaga incêndio... certo?",
+      "criado_em": "2023-12-23T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 9,
+    "fields": {
+      "usuario": 1,
+      "carro": 11,
+      "avaliacao": 4,
+      "texto": "Dirigi e me senti dentro de Velozes 2. O ronco do motor é terapêutico. Nota final: 5/5 — compraria de novo sem pensar!",
+      "criado_em": "2024-08-07T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 10,
+    "fields": {
+      "usuario": 1,
+      "carro": 14,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro hipercarro. Consome combustível como um adolescente na geladeira. Nota final: 5/5 — compraria de novo sem pensar!",
+      "criado_em": "2024-12-05T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 11,
+    "fields": {
+      "usuario": 1,
+      "carro": 12,
+      "avaliacao": 4,
+      "texto": "A vizinhança inteira ouviu quando eu de Smokey and the Bandit. O ronco do motor é terapêutico. Resumo: carro do coração",
+      "criado_em": "2024-05-08T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 12,
+    "fields": {
+      "usuario": 1,
+      "carro": 23,
+      "avaliacao": 4,
+      "texto": "Primeira marcha e já rei dos quebra‑molas. Atrai olhares até de tias do pavê. Resumo: não economiza, mas emociona Se precisar fugir de zumbis, é só abaixar os bancos e partir pro off‑road!",
+      "criado_em": "2023-12-11T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 13,
+    "fields": {
+      "usuario": 1,
+      "carro": 27,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro dos Caça‑Fantasma. O interior cheira a memórias de infância, puro charme. Conclusão? melhor que terapia",
+      "criado_em": "2024-02-26T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 14,
+    "fields": {
+      "usuario": 1,
+      "carro": 26,
+      "avaliacao": 3,
+      "texto": "Coloquei a chave, girei e dos dinossauros. O ronco do motor é terapêutico. Nota final: 5/5 — compraria de novo sem pensar!",
+      "criado_em": "2024-12-03T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 15,
+    "fields": {
+      "usuario": 1,
+      "carro": 5,
+      "avaliacao": 3,
+      "texto": "Dirigi e me senti dentro do Batman de Nolan. O ronco do motor é ensurdecedor. Conclusão? mito absoluto",
+      "criado_em": "2024-05-27T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 16,
+    "fields": {
+      "usuario": 1,
+      "carro": 16,
+      "avaliacao": 4,
+      "texto": "A vizinhança inteira ouviu quando eu poster de adolescência. Nas curvas, ele se comporta como um kart. Nota final: 5/5 — compraria de novo sem pensar!",
+      "criado_em": "2025-05-04T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 17,
+    "fields": {
+      "usuario": 1,
+      "carro": 18,
+      "avaliacao": 4,
+      "texto": "Coloquei a chave, girei e dos memes afiados. O ronco do motor é vibrante. Resumo: mito absoluto",
+      "criado_em": "2023-12-11T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 18,
+    "fields": {
+      "usuario": 1,
+      "carro": 15,
+      "avaliacao": 4,
+      "texto": "Coloquei a chave, girei e último de Enzo. Consome combustível como político em diárias. Conclusão? melhor que terapia",
+      "criado_em": "2024-03-31T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 19,
+    "fields": {
+      "usuario": 1,
+      "carro": 3,
+      "avaliacao": 5,
+      "texto": "Primeira marcha e já de Initial D. Nas curvas, ele se comporta como um barco. Nota final: 3/5 — compraria de novo sem pensar!",
+      "criado_em": "2025-01-19T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 20,
+    "fields": {
+      "usuario": 1,
+      "carro": 23,
+      "avaliacao": 4,
+      "texto": "Coloquei a chave, girei e rei dos quebra‑molas. O ronco do motor é vibrante. Nota final: 3/5 — compraria de novo sem pensar! Se precisar fugir de zumbis, é só abaixar os bancos e partir pro off‑road!",
+      "criado_em": "2023-11-04T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 21,
+    "fields": {
+      "usuario": 1,
+      "carro": 23,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro rei dos quebra‑molas. Atrai olhares até de engenheiros mecânicos. Conclusão? mito absoluto Se precisar fugir de zumbis, é só abaixar os bancos e partir pro off‑road!",
+      "criado_em": "2023-12-13T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 22,
+    "fields": {
+      "usuario": 1,
+      "carro": 26,
+      "avaliacao": 5,
+      "texto": "Coloquei a chave, girei e dos dinossauros. Consome combustível como NFT em GPU. Conclusão? carro do coração",
+      "criado_em": "2025-01-06T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 23,
+    "fields": {
+      "usuario": 1,
+      "carro": 27,
+      "avaliacao": 3,
+      "texto": "A vizinhança inteira ouviu quando eu dos Caça‑Fantasma. Nas curvas, ele se comporta como um cachorro alegre. Resumo: vale cada centavo de oficina",
+      "criado_em": "2024-04-12T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 24,
+    "fields": {
+      "usuario": 1,
+      "carro": 5,
+      "avaliacao": 4,
+      "texto": "A vizinhança inteira ouviu quando eu do Batman de Nolan. Nas curvas, ele se comporta como um barco. Conclusão? não economiza, mas emociona",
+      "criado_em": "2024-09-13T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 25,
+    "fields": {
+      "usuario": 1,
+      "carro": 25,
+      "avaliacao": 5,
+      "texto": "A vizinhança inteira ouviu quando eu asas de gaivota. O interior cheira a carro zero, puro charme. Nota final: 5/5 — compraria de novo sem pensar!",
+      "criado_em": "2025-05-14T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 26,
+    "fields": {
+      "usuario": 1,
+      "carro": 25,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro asas de gaivota. Nas curvas, ele se comporta como um kart. Nota final: 4/5 — compraria de novo sem pensar!",
+      "criado_em": "2024-11-13T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 27,
+    "fields": {
+      "usuario": 1,
+      "carro": 15,
+      "avaliacao": 3,
+      "texto": "Primeira marcha e já último de Enzo. O interior cheira a fibra de carbono, puro charme. Conclusão? mito absoluto",
+      "criado_em": "2024-08-09T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 28,
+    "fields": {
+      "usuario": 1,
+      "carro": 19,
+      "avaliacao": 3,
+      "texto": "A vizinhança inteira ouviu quando eu clássico dos track‑days. Consome combustível como um beija‑flor no néctar. Resumo: mito absoluto",
+      "criado_em": "2023-11-23T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 29,
+    "fields": {
+      "usuario": 1,
+      "carro": 26,
+      "avaliacao": 4,
+      "texto": "Dirigi e me senti dentro dos dinossauros. O interior cheira a gasolina premium, puro charme. Resumo: vale cada centavo de oficina",
+      "criado_em": "2024-02-09T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 30,
+    "fields": {
+      "usuario": 1,
+      "carro": 4,
+      "avaliacao": 5,
+      "texto": "A vizinhança inteira ouviu quando eu do Batman clássico. O interior cheira a memórias de infância, puro charme. Resumo: mito absoluto",
+      "criado_em": "2024-02-15T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 31,
+    "fields": {
+      "usuario": 1,
+      "carro": 15,
+      "avaliacao": 5,
+      "texto": "A vizinhança inteira ouviu quando eu último de Enzo. Atrai olhares até de engenheiros mecânicos. Conclusão? carro do coração",
+      "criado_em": "2024-06-01T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 32,
+    "fields": {
+      "usuario": 1,
+      "carro": 11,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro de Velozes 2. Consome combustível como um beija‑flor no néctar. Conclusão? não economiza, mas emociona",
+      "criado_em": "2024-09-15T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 33,
+    "fields": {
+      "usuario": 1,
+      "carro": 18,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro dos memes afiados. Atrai olhares até de crianças. Resumo: carro do coração",
+      "criado_em": "2024-02-08T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 34,
+    "fields": {
+      "usuario": 1,
+      "carro": 15,
+      "avaliacao": 4,
+      "texto": "Dirigi e me senti dentro último de Enzo. O ronco do motor é terapêutico. Resumo: não economiza, mas emociona",
+      "criado_em": "2023-12-06T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 35,
+    "fields": {
+      "usuario": 1,
+      "carro": 17,
+      "avaliacao": 3,
+      "texto": "Primeira marcha e já indestrutível. Consome combustível como NFT em GPU. Conclusão? melhor que terapia",
+      "criado_em": "2024-12-09T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 36,
+    "fields": {
+      "usuario": 1,
+      "carro": 11,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro de Velozes 2. Atrai olhares até de engenheiros mecânicos. Resumo: mito absoluto",
+      "criado_em": "2024-09-08T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 37,
+    "fields": {
+      "usuario": 1,
+      "carro": 4,
+      "avaliacao": 4,
+      "texto": "Coloquei a chave, girei e do Batman clássico. O interior cheira a graxa vintage, puro charme. Resumo: melhor que terapia",
+      "criado_em": "2025-05-09T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 38,
+    "fields": {
+      "usuario": 1,
+      "carro": 2,
+      "avaliacao": 3,
+      "texto": "Primeira marcha e já de 60 Segundos. Nas curvas, ele se comporta como um kart. Conclusão? não economiza, mas emociona",
+      "criado_em": "2025-05-03T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 39,
+    "fields": {
+      "usuario": 1,
+      "carro": 9,
+      "avaliacao": 3,
+      "texto": "A vizinhança inteira ouviu quando eu de Uma Saída de Mestre. O ronco do motor é orquestral. Resumo: vale cada centavo de oficina",
+      "criado_em": "2025-01-23T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 40,
+    "fields": {
+      "usuario": 1,
+      "carro": 26,
+      "avaliacao": 5,
+      "texto": "Primeira marcha e já dos dinossauros. O ronco do motor é ensurdecedor. Resumo: melhor que terapia",
+      "criado_em": "2024-05-31T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 41,
+    "fields": {
+      "usuario": 1,
+      "carro": 15,
+      "avaliacao": 5,
+      "texto": "A vizinhança inteira ouviu quando eu último de Enzo. O interior cheira a gasolina premium, puro charme. Resumo: melhor que terapia",
+      "criado_em": "2024-11-20T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 42,
+    "fields": {
+      "usuario": 1,
+      "carro": 9,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro de Uma Saída de Mestre. Nas curvas, ele se comporta como um sofá sobre rodas. Nota final: 4/5 — compraria de novo sem pensar!",
+      "criado_em": "2024-02-29T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 43,
+    "fields": {
+      "usuario": 1,
+      "carro": 10,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro do 007. Nas curvas, ele se comporta como um barco. Conclusão? mito absoluto",
+      "criado_em": "2024-12-04T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 44,
+    "fields": {
+      "usuario": 1,
+      "carro": 14,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro hipercarro. Atrai olhares até de cachorros. Nota final: 3/5 — compraria de novo sem pensar!",
+      "criado_em": "2023-11-20T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 45,
+    "fields": {
+      "usuario": 1,
+      "carro": 30,
+      "avaliacao": 4,
+      "texto": "Primeira marcha e já VTec kicks in yo. Consome combustível como NFT em GPU. Resumo: carro do coração",
+      "criado_em": "2025-04-03T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 46,
+    "fields": {
+      "usuario": 1,
+      "carro": 20,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro do Fusca Falante. Consome combustível como um adolescente na geladeira. Nota final: 5/5 — compraria de novo sem pensar!",
+      "criado_em": "2025-06-03T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 47,
+    "fields": {
+      "usuario": 1,
+      "carro": 25,
+      "avaliacao": 5,
+      "texto": "Primeira marcha e já asas de gaivota. Atrai olhares até de engenheiros mecânicos. Nota final: 5/5 — compraria de novo sem pensar!",
+      "criado_em": "2024-02-07T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 48,
+    "fields": {
+      "usuario": 1,
+      "carro": 3,
+      "avaliacao": 4,
+      "texto": "A vizinhança inteira ouviu quando eu de Initial D. O interior cheira a gasolina premium, puro charme. Conclusão? carro do coração",
+      "criado_em": "2024-05-10T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 49,
+    "fields": {
+      "usuario": 1,
+      "carro": 27,
+      "avaliacao": 5,
+      "texto": "Dirigi e me senti dentro dos Caça‑Fantasma. Consome combustível como político em diárias. Conclusão? vale cada centavo de oficina",
+      "criado_em": "2023-12-17T13:04:19Z"
+    }
+  },
+  {
+    "model": "reviews.critica",
+    "pk": 50,
+    "fields": {
+      "usuario": 1,
+      "carro": 15,
+      "avaliacao": 5,
+      "texto": "A vizinhança inteira ouviu quando eu último de Enzo. O ronco do motor é ensurdecedor. Nota final: 3/5 — compraria de novo sem pensar!",
+      "criado_em": "2025-02-10T13:04:19Z"
+    }
+  }
+]
