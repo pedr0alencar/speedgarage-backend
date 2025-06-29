@@ -141,8 +141,8 @@ REST_FRAMEWORK = {
         "rest_framework.filters.OrderingFilter",
         "rest_framework.filters.SearchFilter",
     ],
-#     "DEFAULT_PAGINATION_CLASS": "reviews.pagination.DefaultLimitOffsetPagination",
-#     "PAGE_SIZE": 60,
+    "DEFAULT_PAGINATION_CLASS": "reviews.pagination.DefaultLimitOffsetPagination",
+    "PAGE_SIZE": 60,
  }
 
 SIMPLE_JWT = {
