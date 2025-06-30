@@ -24,6 +24,7 @@ class CriticaSerializer(serializers.ModelSerializer):
     carro_nome = serializers.SerializerMethodField()
     carro_marca = serializers.SerializerMethodField()
     carro_ano = serializers.SerializerMethodField()
+    carro_imagem = serializers.SerializerMethodField()
     total_likes = serializers.IntegerField(
         source='liked_users.count',
         read_only=True
@@ -33,10 +34,9 @@ class CriticaSerializer(serializers.ModelSerializer):
     class Meta:
         model  = Critica
         fields = [
-            "id", "carro",  # write_only
-            "usuario_nome",
-            "carro_nome", "carro_marca", "carro_ano",
-            "avaliacao", "texto", "criado_em",  
+            "id", "carro",
+            "usuario_nome", "carro_nome", "carro_marca", "carro_ano", "carro_imagem",
+            "avaliacao", "texto", "criado_em",
             "total_likes", "liked_by_me"
         ]
         read_only_fields = ["usuario", "criado_em"]
@@ -79,6 +79,8 @@ class CriticaSerializer(serializers.ModelSerializer):
             return obj.liked_users.filter(pk=user.pk).exists()
         return False
 
+    def get_carro_imagem(self, obj):
+        return obj.carro.imagem.url if obj.carro.imagem else None
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
