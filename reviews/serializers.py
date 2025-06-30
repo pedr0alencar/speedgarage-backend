@@ -9,13 +9,19 @@ from rest_framework import serializers
 class CarroSerializer(serializers.ModelSerializer):
     media_avaliacao = serializers.FloatField(read_only=True)
     imagens = serializers.SerializerMethodField()
+    imagem = serializers.SerializerMethodField()  # novo campo
 
     class Meta:
-        model  = Carro
-        fields = ["id", "marca", "modelo", "ano", "media_avaliacao", "imagens"]
+        model = Carro
+        fields = ["id", "marca", "modelo", "ano",
+                  "media_avaliacao", "imagem", "imagens"]
 
     def get_imagens(self, obj):
-        return [imagem.foto.url for imagem in obj.imagens.all()]
+        return [im.foto.url for im in obj.imagens.all()]
+
+    def get_imagem(self, obj):
+        img = obj.imagens.filter(tipo='EX').first() or obj.imagens.first()
+        return img.foto.url if img else None
 
 
 
@@ -81,10 +87,8 @@ class CriticaSerializer(serializers.ModelSerializer):
         return False
 
     def get_carro_imagem(self, obj):
-        imagem_exterior = obj.carro.imagens.filter(tipo='EX').first()
-        if imagem_exterior and imagem_exterior.foto:
-            return imagem_exterior.foto.url
-        return None
+        img = obj.carro.imagens.filter(tipo='EX').first() or obj.carro.imagens.first()
+        return img.foto.url if img else None
 
 
 class RegisterSerializer(serializers.ModelSerializer):
