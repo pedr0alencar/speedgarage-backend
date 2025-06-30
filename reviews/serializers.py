@@ -8,9 +8,15 @@ from rest_framework import serializers
 
 class CarroSerializer(serializers.ModelSerializer):
     media_avaliacao = serializers.FloatField(read_only=True)
+    imagens = serializers.SerializerMethodField()
+
     class Meta:
         model  = Carro
-        fields = "__all__"
+        fields = ["id", "marca", "modelo", "ano", "media_avaliacao", "imagens"]
+
+    def get_imagens(self, obj):
+        return [imagem.foto.url for imagem in obj.imagens.all()]
+
 
 
 class CriticaSerializer(serializers.ModelSerializer):
@@ -29,7 +35,7 @@ class CriticaSerializer(serializers.ModelSerializer):
         fields = [
             "id", "carro",  # write_only
             "usuario_nome",
-            "carro_nome", "carro_marca", "carro_ano",  # <-- NOVOS CAMPOS AQUI
+            "carro_nome", "carro_marca", "carro_ano",
             "avaliacao", "texto", "criado_em",  
             "total_likes", "liked_by_me"
         ]
