@@ -19,6 +19,7 @@ class CarroSerializer(serializers.ModelSerializer):
 
 
 
+
 class CriticaSerializer(serializers.ModelSerializer):
     usuario_nome = serializers.SerializerMethodField()
     carro_nome = serializers.SerializerMethodField()
@@ -80,7 +81,11 @@ class CriticaSerializer(serializers.ModelSerializer):
         return False
 
     def get_carro_imagem(self, obj):
-        return obj.carro.imagem.url if obj.carro.imagem else None
+        imagem_exterior = obj.carro.imagens.filter(tipo='EX').first()
+        if imagem_exterior and imagem_exterior.foto:
+            return imagem_exterior.foto.url
+        return None
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
